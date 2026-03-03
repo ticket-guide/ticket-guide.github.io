@@ -11,3 +11,4 @@
 - **[추가 콘텐츠]** 참조 사이트를 기반으로 예약판매/주의사항/방침 등의 텍스트를 최신 UI(Glassmorphism, Lucide Icon 등)로 구성하여 `guide-content` 도메인 캡슐화 및 `page.tsx` 통합 완료.
 - 안내 섹션 중 '거래 과정 예시' 부분을 실제 채팅을 주고받는 형태의 친화적인 UI(말풍선, 상대방 프로필 추가 등 UX 고도화)로 수정 완료.
 - Github 연동 시 불필요하게 올라갈 수 있는 파일(`.next/`, `node_modules/` 등)에 대한 `.gitignore` 설정을 최신 Next.js/Node 기반 템플릿으로 추가 적용 완료.
+- Github Pages 연동 시 사용자 계정 서브 디렉토리 문제로 인한 CSS/에셋 깨짐 에러 대비를 위해 `next.config.ts`에 필요 시 주석을 해제할 수 있도록 `basePath`, `assetPrefix` 안내 코드 삽입 및 배포 재안내.
