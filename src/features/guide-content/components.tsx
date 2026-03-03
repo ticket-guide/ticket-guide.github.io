@@ -19,9 +19,35 @@ export const GuideContentSection = () => {
     };
 
     return (
-        <div className="w-full max-w-5xl mx-auto flex flex-col gap-12 mt-16 animate-slide-up">
-            {/* 1. 예약판매란? (도식화 추가) */}
-            <section className="glass-effect bg-white/60 dark:bg-zinc-900/60 p-8 rounded-3xl shadow-md border border-gray-200 dark:border-zinc-800 transition-transform hover:-translate-y-1">
+        <div className="w-full max-w-5xl mx-auto flex flex-col gap-8 lg:gap-12 mt-8 lg:mt-12 animate-slide-up text-left">
+
+            {/* 상단 통합 컨테이너 (메인 타이틀) */}
+            <div className="rounded-3xl shadow-xl border-0 overflow-hidden flex flex-col">
+
+                {/* 메인 타이틀 파트 (색상 A) */}
+                <div className="bg-gradient-to-br from-[#f8f9fc] to-[#eef2f6] dark:from-zinc-900 dark:to-zinc-800 p-8 sm:p-12 lg:p-16 text-center flex flex-col items-center">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
+                        상품권 예약판매 <br className="sm:hidden" />거래 가이드
+                    </h1>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 max-w-2xl font-medium mb-8 leading-relaxed">
+                        상품권 예판 사이트, 예약판매 카페 등에서 안전하고 투명한 거래를 하기 위한 완벽 매뉴얼
+                    </p>
+
+                    {/* 빠른 이동 메뉴(목차) */}
+                    <div className="w-full max-w-2xl border-t border-gray-200 dark:border-zinc-700 pt-6 mt-2">
+                        <p className="text-xs sm:text-sm font-bold text-gray-500 mb-4 tracking-wider">안내 목차 빠르게 이동하기</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                            <a href="#what-is-reservation" className="px-4 py-2 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-bold rounded-full shadow-sm hover:shadow-md transition-all text-xs sm:text-sm border border-gray-200 dark:border-zinc-700">예약판매란?</a>
+                            <a href="#warnings" className="px-4 py-2 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-bold rounded-full shadow-sm hover:shadow-md transition-all text-xs sm:text-sm border border-gray-200 dark:border-zinc-700">주의사항 및 리스크</a>
+                            <a href="#legal-penalty" className="px-4 py-2 bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200 font-bold rounded-full shadow-sm hover:shadow-md transition-all text-xs sm:text-sm border border-gray-200 dark:border-zinc-700">법적 처벌 안내</a>
+                            <a href="#company-list-section" className="px-5 py-2 bg-primary text-white font-bold rounded-full shadow-md hover:shadow-lg transition-all text-xs sm:text-sm">추천 업체 바로가기 👉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 1. 예약판매란 파트 */}
+            <section id="what-is-reservation" className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-sm scroll-mt-24">
                 <div className="flex items-center gap-3 mb-6">
                     {getIcon('info')}
                     <h2 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
@@ -64,8 +90,8 @@ export const GuideContentSection = () => {
                                             )}
 
                                             <div className={`relative z-10 p-3 sm:p-4 rounded-2xl sm:rounded-3xl shadow-sm text-sm sm:text-base leading-snug break-words animate-fade-in ${isMe
-                                                    ? 'bg-primary text-white rounded-tr-sm'
-                                                    : 'bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200 rounded-tl-sm border border-gray-100 dark:border-zinc-700'
+                                                ? 'bg-primary text-white rounded-tr-sm'
+                                                : 'bg-white dark:bg-zinc-800 text-gray-800 dark:text-gray-200 rounded-tl-sm border border-gray-100 dark:border-zinc-700'
                                                 }`}>
                                                 {s.description}
                                             </div>
@@ -79,7 +105,7 @@ export const GuideContentSection = () => {
             </section>
 
             {/* 2. 주의사항 및 리스크 */}
-            <section className="glass-effect bg-white/60 dark:bg-zinc-900/60 p-8 rounded-3xl shadow-md border border-gray-200 dark:border-zinc-800 transition-transform hover:-translate-y-1">
+            <section id="warnings" className="glass-effect bg-white/60 dark:bg-zinc-900/60 p-6 sm:p-8 rounded-3xl shadow-sm transition-transform scroll-mt-24 border-0">
                 <div className="flex items-center gap-3 mb-6">
                     {getIcon('warning')}
                     <h2 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400">
@@ -112,7 +138,7 @@ export const GuideContentSection = () => {
             </section>
 
             {/* 3. 미발송 시 법적 처벌 */}
-            <section className="glass-effect bg-red-50/30 dark:bg-red-900/10 p-8 rounded-3xl shadow-md border border-red-200 dark:border-red-900/30 transition-transform hover:-translate-y-1">
+            <section id="legal-penalty" className="glass-effect bg-red-50/80 dark:bg-red-900/20 p-6 sm:p-8 rounded-3xl shadow-sm transition-transform scroll-mt-24 border-0">
                 <div className="flex items-center gap-3 mb-6">
                     {getIcon('legal')}
                     <h2 className="text-2xl sm:text-3xl font-bold text-red-600 dark:text-red-400">
@@ -142,7 +168,7 @@ export const GuideContentSection = () => {
             </section>
 
             {/* 4. 결론 */}
-            <section className="glass-effect bg-green-50/50 dark:bg-green-900/10 p-8 rounded-3xl shadow-md border border-green-200 dark:border-green-900/30 transition-transform hover:-translate-y-1 text-center">
+            <section className="glass-effect bg-green-50/80 dark:bg-green-900/20 p-6 sm:p-8 rounded-3xl shadow-sm transition-transform text-center border-0">
                 <div className="flex items-center justify-center gap-3 mb-4">
                     {getIcon('check')}
                     <h2 className="text-2xl sm:text-3xl font-bold text-green-700 dark:text-green-400">

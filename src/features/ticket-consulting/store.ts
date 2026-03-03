@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { ConsultingType, ConsultingState } from './types';
 
 interface ConsultingStore extends ConsultingState {
-    openModal: (type: ConsultingType) => void;
+    openModal: (type: string) => void;
     closeModal: () => void;
 }
 

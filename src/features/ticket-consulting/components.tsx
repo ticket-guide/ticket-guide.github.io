@@ -2,27 +2,67 @@
 
 import React from 'react';
 import { useConsultingStore } from './store';
-import { getConsultingOptions, getQrCodeUrlForType, getModalTitleForType } from './logic';
-import { ConsultingType } from './types';
-import { X, MessageCircle } from 'lucide-react';
+import { getCompanies, getQrCodeUrlForType, getModalTitleForType } from './logic';
+import { X, MessageCircle, BadgeCheck, CheckCircle2 } from 'lucide-react';
 
-export const ConsultingButtons = () => {
+const getThemeClasses = (key?: string) => {
+    switch (key) {
+        case 'blue': return 'bg-blue-200/90 dark:bg-blue-900/80 border-0 shadow-lg shadow-blue-200/50';
+        case 'purple': return 'bg-purple-200/90 dark:bg-purple-900/80 border-0 shadow-lg shadow-purple-200/50';
+        case 'emerald': return 'bg-emerald-200/90 dark:bg-emerald-900/80 border-0 shadow-lg shadow-emerald-200/50';
+        case 'rose': return 'bg-rose-200/90 dark:bg-rose-900/80 border-0 shadow-lg shadow-rose-200/50';
+        case 'amber': return 'bg-amber-200/90 dark:bg-amber-900/80 border-0 shadow-lg shadow-amber-200/50';
+        default: return 'bg-gray-200/90 dark:bg-zinc-800/90 border-0 shadow-lg';
+    }
+};
+
+export const CompanyListSection = () => {
     const openModal = useConsultingStore((state) => state.openModal);
-    const options = getConsultingOptions();
+    const companies = getCompanies();
 
     return (
-        <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mt-8">
-            {options.map((option) => (
-                <button
-                    key={option.id}
-                    onClick={() => openModal(option.id)}
-                    className="flex-1 min-w-[200px] text-white bg-primary hover:bg-primary-dark transition-all duration-300 py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-1 flex flex-col items-center justify-center gap-2"
-                >
-                    <MessageCircle size={28} />
-                    <span className="font-bold text-lg">{option.label}</span>
-                    <span className="text-sm opacity-80 whitespace-nowrap">{option.description}</span>
-                </button>
-            ))}
+        <div id="company-list-section" className="w-full mt-4 scroll-mt-24">
+            {/* 업체 리스트 그리드 (모바일 1열, 태블릿/PC 2열) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
+                {companies.map((company, index) => (
+                    <div
+                        key={company.id}
+                        className={`group relative backdrop-blur-md rounded-3xl p-6 sm:p-8 transition-all duration-300 flex flex-col h-full animate-fade-in ${getThemeClasses(company.themeKey)}`}
+                        style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                        {/* 상단: 업체명 */}
+                        <div className="flex flex-col mb-4">
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 flex items-start gap-2 leading-tight">
+                                {company.name}
+                                <BadgeCheck className="text-blue-500 w-5 h-5 sm:w-6 sm:h-6 shrink-0 mt-0.5" />
+                            </h3>
+                        </div>
+
+                        {/* 중단: 설명 텍스트 (flex-grow를 통해 높이를 모두 채워 하단 영역을 밀어냄) */}
+                        <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm sm:text-base leading-relaxed flex-grow">
+                            {company.description}
+                        </p>
+
+                        {/* 하단: 기능 특징 칩 및 상담 버튼 (항상 박스 아래 쪽에 위치) */}
+                        <div className="mt-auto">
+                            <div className="flex flex-wrap gap-2 mb-6">
+                                {company.features.map(feat => (
+                                    <span key={feat} className="flex items-center gap-1 text-[11px] font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 px-2.5 py-1 rounded-md border border-emerald-100 dark:border-emerald-800/30">
+                                        <CheckCircle2 className="w-3 h-3 shrink-0" /> {feat}
+                                    </span>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => openModal(company.id)}
+                                className="w-full py-4 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
+                            >
+                                <MessageCircle className="w-5 h-5 shrink-0" /> 실시간 상담 연결
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
@@ -36,43 +76,39 @@ export const ConsultingQrModal = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* 백그라운드 블러 오버레이 */}
             <div
-                className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
+                className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
                 onClick={closeModal}
             />
 
             {/* 모달 컨텐츠 */}
-            <div className="relative glass-effect bg-white dark:bg-zinc-900 rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-slide-up z-10 flex flex-col items-center">
+            <div className="relative glass-effect bg-white dark:bg-zinc-900 rounded-3xl p-8 max-w-sm w-full shadow-2xl animate-slide-up z-10 flex flex-col items-center border border-white/20">
                 <button
                     onClick={closeModal}
-                    className="absolute right-6 top-6 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    className="absolute right-5 top-5 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-gray-100 dark:bg-zinc-800 rounded-full p-1.5"
                 >
-                    <X size={24} />
+                    <X size={20} />
                 </button>
 
-                <h2 className="text-2xl font-extrabold mb-2 text-primary">
+                <h2 className="text-xl sm:text-2xl font-extrabold mb-2 text-primary text-center">
                     {getModalTitleForType(selectedType)}
                 </h2>
-                <p className="text-sm text-gray-500 mb-8 text-center">
+                <p className="text-xs sm:text-sm text-gray-500 mb-8 text-center px-4">
                     QR 코드를 스캔하여 24시간 실시간 상담을 시작하세요.
                 </p>
 
-                <div className="w-48 h-48 bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-primary/20 p-2">
+                <div className="w-48 h-48 bg-gray-50 dark:bg-zinc-800/50 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-primary/20 p-2 shadow-inner">
                     {/* 실제 이미지 연결 전에 보여줄 더미 상태 */}
-                    <div className="w-full h-full bg-white rounded-xl flex items-center justify-center text-gray-400 border border-dashed border-gray-300">
+                    <div className="w-full h-full bg-white dark:bg-zinc-800 rounded-xl flex items-center justify-center text-gray-400 border border-dashed border-gray-300 dark:border-zinc-600">
                         <div className="text-center">
-                            <MessageCircle className="mx-auto mb-2 opacity-50" size={32} />
-                            <span className="text-xs">{selectedType} QR</span>
+                            <MessageCircle className="mx-auto mb-2 opacity-50 text-primary" size={32} />
+                            <span className="text-xs font-semibold">업체 상담 QR</span>
                         </div>
-                        {/* 
-              // TODO: 실제 QR 이미지 에셋 준비 시 대체
-              // <img src={getQrCodeUrlForType(selectedType)} alt="QR Code" className="w-full h-full object-contain" />
-            */}
                     </div>
                 </div>
 
-                <div className="mt-8 text-center">
-                    <p className="font-medium">또는 아래 메신저 검색창 활용</p>
-                    <p className="text-sm text-gray-500 mt-1">@티켓가이드상담</p>
+                <div className="mt-8 text-center bg-gray-50 dark:bg-zinc-800/30 w-full rounded-2xl py-4 border border-gray-100 dark:border-zinc-800">
+                    <p className="font-semibold text-gray-700 dark:text-gray-200 text-sm">또는 아래 메신저 검색창 활용</p>
+                    <p className="text-sm font-bold text-primary mt-1">@티켓가이드상담</p>
                 </div>
             </div>
         </div>
