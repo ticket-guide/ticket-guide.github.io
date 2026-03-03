@@ -6,7 +6,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
             <main className="flex flex-col gap-8 items-center text-center animate-fade-in w-full max-w-4xl">
                 <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-primary">
-                    상품권 안내 가이드
+                    상품권 판매 안내 가이드
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl bg-white/50 dark:bg-black/50 p-6 rounded-2xl glass-effect shadow-sm">
                     안전하고 빠르고 믿을 수 있는 상품권 거래의 모든 것. <br className="hidden sm:block" />
