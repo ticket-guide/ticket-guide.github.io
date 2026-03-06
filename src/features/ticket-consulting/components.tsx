@@ -78,12 +78,23 @@ export const CompanyListSection = () => {
 
                         {/* 하단: 상담 버튼 (항상 박스 아래 쪽에 위치) */}
                         <div className="mt-auto">
-                            <button
-                                onClick={() => openModal(company.id)}
-                                className="w-full py-3 rounded-xl bg-white text-zinc-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
-                            >
-                                <MessageCircle className="w-5 h-5 shrink-0" /> 실시간 상담 연결
-                            </button>
+                            {company.contactLink ? (
+                                <a
+                                    href={company.contactLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full py-3 rounded-xl bg-white text-zinc-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
+                                >
+                                    <MessageCircle className="w-5 h-5 shrink-0" /> 실시간 상담 연결
+                                </a>
+                            ) : (
+                                <button
+                                    onClick={() => openModal(company.id)}
+                                    className="w-full py-3 rounded-xl bg-white text-zinc-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
+                                >
+                                    <MessageCircle className="w-5 h-5 shrink-0" /> 실시간 상담 연결
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}

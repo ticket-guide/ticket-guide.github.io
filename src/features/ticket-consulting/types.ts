@@ -14,6 +14,7 @@ export interface Company {
     description: string;    // 한줄 설명
     iconUrl?: string;       // 업체 타이틀 옆 아이콘 (왕관/엠블럼 등)
     themeKey?: 'blue' | 'purple' | 'emerald' | 'rose' | 'amber'; // 카드 색상 테마
+    contactLink?: string;   // 클릭 시 바로 이동할 외부 메신저 링크 (예: 라인 딥링크)
 }
 
 export interface ConsultingState {
