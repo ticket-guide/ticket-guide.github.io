@@ -32,6 +32,30 @@ export const getCompanies = (): Company[] => [
         description: '구글, 넥슨, 문화상품권 모바일 특화 거래소',
         themeKey: 'rose'
     },
+    {
+        id: 'company-e',
+        name: '티켓 매입 365',
+        description: '도서문화, 해피머니 실시간 최고가 매입',
+        themeKey: 'amber'
+    },
+    {
+        id: 'company-f',
+        name: '안전 거래소 VIP',
+        description: '5년 연속 무사고 인증, VIP 전담 상담사 배정',
+        themeKey: 'blue'
+    },
+    {
+        id: 'company-g',
+        name: '페이백 프로',
+        description: '소액 티켓 현금화 및 상품권 대량 거래 전문',
+        themeKey: 'emerald'
+    },
+    {
+        id: 'company-h',
+        name: '스마트 티켓 머니',
+        description: '신용카드 상품권 매입, 24시간 자동화 시스템',
+        themeKey: 'purple'
+    },
 ];
 
 export const getQrCodeUrlForType = (typeId: string): string => {
