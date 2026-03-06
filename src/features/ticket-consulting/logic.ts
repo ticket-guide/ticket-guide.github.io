@@ -12,28 +12,24 @@ export const getCompanies = (): Company[] => [
         id: 'company-a',
         name: '티켓가이드 공식 파트너',
         description: '업계 최저 수수료 보장 및 5분 내 입금',
-        features: ['24시간 즉시입금', '수수료 최저', '안전보장'],
         themeKey: 'blue'
     },
     {
         id: 'company-b',
         name: '신속티켓 24',
         description: '핀번호만 있으면 1분 컷 초고속 거래',
-        features: ['비대면 특화', '자동 매입 봇', '소액환영'],
         themeKey: 'purple'
     },
     {
         id: 'company-c',
         name: '프리미엄 지류 티켓',
         description: '지류 상품권 대량 매입 전문, 방문 출장 가능',
-        features: ['대량매입 우대', '현장방문', '기업전문'],
         themeKey: 'emerald'
     },
     {
         id: 'company-d',
         name: '플레이 포인트 익스체인지',
         description: '구글, 넥슨, 문화상품권 모바일 특화 거래소',
-        features: ['게임특화', '환율우대', '365일 연중무휴'],
         themeKey: 'rose'
     },
 ];

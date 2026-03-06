@@ -12,7 +12,6 @@ export interface Company {
     id: string;             // 모달 분기용 고유 ID
     name: string;           // 업체명
     description: string;    // 한줄 설명
-    features: string[];     // 업체 특징 배열 (예: '24시간', '수수료 최저')
     themeKey?: 'blue' | 'purple' | 'emerald' | 'rose' | 'amber'; // 카드 색상 테마
 }
 

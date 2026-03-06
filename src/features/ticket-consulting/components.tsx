@@ -26,7 +26,7 @@ export const CompanyListSection = () => {
         <div id="company-list-section" className="w-full mt-4 scroll-mt-24">
 
             {/* 펼치기 / 접기 토글 헤더 */}
-            <div className="w-full max-w-5xl mx-auto flex items-center justify-between bg-zinc-900 text-white p-4 sm:p-5 rounded-2xl shadow-md cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
+            <div className="w-full max-w-[100rem] mx-auto flex items-center justify-between bg-zinc-900 text-white p-4 sm:p-5 rounded-2xl shadow-md cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
                 <div className="flex items-center gap-3">
                     <BadgeCheck className="text-blue-400 w-6 h-6" />
                     <h2 className="text-lg sm:text-xl font-bold">인증된 검증 업체 목록</h2>
@@ -36,40 +36,32 @@ export const CompanyListSection = () => {
                 </button>
             </div>
 
-            {/* 업체 리스트 그리드 (모바일 1열, 태블릿/PC 2열) - 아코디언 애니메이션 추가 */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-5xl mx-auto transition-all duration-500 overflow-hidden ${isExpanded ? 'opacity-100 max-h-[8000px] mt-6' : 'opacity-0 max-h-0'}`}>
+            {/* 업체 리스트 그리드 (모바일 1열, 태블릿 2열, 큰 화면 최대 4열) - 아코디언 애니메이션 추가 */}
+            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full max-w-[100rem] mx-auto transition-all duration-500 overflow-hidden ${isExpanded ? 'opacity-100 max-h-[8000px] mt-6' : 'opacity-0 max-h-0'}`}>
                 {companies.map((company, index) => (
                     <div
                         key={company.id}
-                        className={`group relative rounded-3xl p-6 sm:p-8 transition-all duration-300 flex flex-col h-full animate-fade-in ${getThemeClasses(company.themeKey)}`}
+                        className={`group relative rounded-2xl p-4 sm:p-6 transition-all duration-300 flex flex-col h-full animate-fade-in ${getThemeClasses(company.themeKey)}`}
                         style={{ animationDelay: `${index * 100}ms` }}
                     >
                         {/* 상단: 업체명 */}
-                        <div className="flex flex-col mb-4">
-                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 flex items-start gap-2 leading-tight">
+                        <div className="flex flex-col mb-2">
+                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2 leading-tight">
                                 {company.name}
-                                <BadgeCheck className="text-blue-400 w-5 h-5 sm:w-6 sm:h-6 shrink-0 mt-0.5" />
+                                <BadgeCheck className="text-blue-400 w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
                             </h3>
                         </div>
 
                         {/* 중단: 설명 텍스트 (flex-grow를 통해 높이를 모두 채워 하단 영역을 밀어냄) */}
-                        <p className="text-zinc-400 mb-6 text-sm sm:text-base leading-relaxed flex-grow">
+                        <p className="text-zinc-400 mb-4 text-sm sm:text-base leading-relaxed flex-grow">
                             {company.description}
                         </p>
 
-                        {/* 하단: 기능 특징 칩 및 상담 버튼 (항상 박스 아래 쪽에 위치) */}
+                        {/* 하단: 상담 버튼 (항상 박스 아래 쪽에 위치) */}
                         <div className="mt-auto">
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {company.features.map(feat => (
-                                    <span key={feat} className="flex items-center gap-1 text-[11px] font-medium text-emerald-400 bg-emerald-900/30 px-2.5 py-1 rounded-md border border-emerald-800/50">
-                                        <CheckCircle2 className="w-3 h-3 shrink-0" /> {feat}
-                                    </span>
-                                ))}
-                            </div>
-
                             <button
                                 onClick={() => openModal(company.id)}
-                                className="w-full py-4 rounded-xl bg-white text-zinc-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
+                                className="w-full py-3 rounded-xl bg-white text-zinc-900 font-bold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden relative"
                             >
                                 <MessageCircle className="w-5 h-5 shrink-0" /> 실시간 상담 연결
                             </button>

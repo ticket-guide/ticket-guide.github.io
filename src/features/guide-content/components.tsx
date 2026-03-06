@@ -19,7 +19,7 @@ export const GuideContentSection = () => {
     };
 
     return (
-        <div className="w-full max-w-5xl mx-auto flex flex-col gap-8 lg:gap-12 animate-slide-up text-left">
+        <div className="w-full max-w-[100rem] mx-auto flex flex-col gap-8 lg:gap-12 animate-slide-up text-left">
 
             {/* 상단 통합 컨테이너 (메인 타이틀) */}
             <div className="rounded-3xl shadow-xl border-0 overflow-hidden flex flex-col">
