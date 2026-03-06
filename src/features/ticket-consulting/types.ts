@@ -9,7 +9,7 @@ export interface ConsultingOption {
 }
 
 export interface Company {
-    id: string;             // 모달 분기용 고유 ID
+    id: number;             // 모달 분기용 고유 숫자 ID
     name: string;           // 업체명
     description: string;    // 한줄 설명
     iconUrl?: string;       // 업체 타이틀 옆 아이콘 (왕관/엠블럼 등)
@@ -18,5 +18,5 @@ export interface Company {
 
 export interface ConsultingState {
     isModalOpen: boolean;
-    selectedType: string | null;
+    selectedType: string | number | null;
 }
