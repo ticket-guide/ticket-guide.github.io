@@ -15,7 +15,7 @@ export const getCompanies = (): Company[] => {
             badges: ['정식사업자 업체 등록', '빠른 상담'],
             iconUrl: '/first-ticket.png',
             themeKey: 'purple',
-            contactLink: 'https://line.me/ti/p/~ticket2387'
+            contactLink: 'https://line.me/ti/p/WRCsmEfjCm'
         },
         {
             id: 2,
